@@ -1,0 +1,28 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Search Results for {{query}}
+{% endblock %}
+
+{% block body %}
+<h1> Search match for ...{{query}}...</h1>
+<div>
+    <div>
+    <ul>
+    {%for title in results_in_titles%}
+    <div><li><a href="{%url 'wiki:get' title%}">{{title}}</a> </li></div>
+    {%empty%}}
+        <div><p>No Titles with {{query}} in them</p></div>
+    {%endfor%}
+    </ul>
+    </div>
+    <div>
+        <ul>
+            {%for title in results_in_contents%}
+            <div><li><a href="{%url 'wiki:get' title%}">{{title}}</a> </li></div>
+            {%empty%}
+            {%endfor%}
+        </ul>
+    </div>
+</div>
+{% endblock %}
